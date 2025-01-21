@@ -3,7 +3,7 @@ name: Update README with GitLab Activity
 on:
   # Schedule the workflow to run daily at midnight UTC
   schedule:
-    - cron: "0 6 * * *" # Runs at 00:00 UTC every day
+    - cron: "0 6 * * *" # Runs at 06:00 UTC every day
 
   # Trigger the workflow manually or on a push to the default branch
   push:
@@ -21,20 +21,7 @@ jobs:
       - name: Fetch GitLab activity
         run: |
           curl --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" \
-          "https://gitlab.com/api/v4/users/USERNAME/events" > gitlab_activity.json
-
-      - name: Debug JSON
-        run: |
-          echo "Inspecting JSON file..."
-          cat gitlab_activity.json
-          echo "Formatted JSON:"
-          jq . gitlab_activity.json
-
-      - name: Update README
-        run: |
-          echo "## Latest GitLab Activity" > new_readme.md
-          jq '.[] | "- \(.action_name) in project [\(.project_id)]"' gitlab_activity.json >> new_readme.md
-          cat new_readme.md README.md > temp.md && mv temp.md README.md
+          "https://lab.git.boom.marker/api/v4/users/24/events" > gitlab_activity.json
 
       - name: Update README
         run: |
