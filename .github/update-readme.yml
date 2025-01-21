@@ -1,9 +1,15 @@
 name: Update README with GitLab Activity
 
 on:
+  # Schedule the workflow to run daily at midnight UTC
   schedule:
-    - cron: "0 * * * *" # Runs every hour
-  workflow_dispatch:
+    - cron: "0 6 * * *" # Runs at 00:00 UTC every day
+
+  # Trigger the workflow manually or on a push to the default branch
+  push:
+    branches:
+      - main # Replace 'main' with your default branch if different
+  workflow_dispatch: # Allows you to trigger the workflow manually from the GitHub Actions interface
 
 jobs:
   update-readme:
