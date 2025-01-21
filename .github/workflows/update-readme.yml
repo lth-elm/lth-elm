@@ -15,10 +15,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Fetch GitLab activity
+      - name: Fetch GitLab activity (with pagination)
         run: |
-          curl --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" \
-          "https://lab.git.boom.market/api/v4/users/24/events" > gitlab_activity.json
+          echo "[]" > gitlab_activity.json
+          page=1
+          while true; do
+            # Fetch a page of results
+            response=$(curl -s --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" \
+              "https://lab.git.boom.market/api/v4/users/24/events?page=$page&per_page=100")
+            
+            # Stop if no more results
+            if [ "$(echo $response | jq '. | length')" -eq 0 ]; then
+              break
+            fi
+            
+            # Append results to the main JSON file
+            jq -s '.[0] + .[1]' gitlab_activity.json <(echo "$response") > temp.json && mv temp.json gitlab_activity.json
+            
+            # Increment the page counter
+            page=$((page + 1))
+          done
 
       - name: Generate Contribution Summary by Month
         run: |
