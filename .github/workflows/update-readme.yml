@@ -1,15 +1,12 @@
 name: Update README with GitLab Activity
 
 on:
-  # Schedule the workflow to run daily at midnight UTC
   schedule:
     - cron: "0 6 * * *" # Runs at 06:00 UTC every day
-
-  # Trigger the workflow manually or on a push to the default branch
   push:
     branches:
-      - main # Replace 'main' with your default branch if different
-  workflow_dispatch: # Allows you to trigger the workflow manually from the GitHub Actions interface
+      - main
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -23,10 +20,24 @@ jobs:
           curl --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" \
           "https://lab.git.boom.market/api/v4/users/24/events" > gitlab_activity.json
 
-      - name: Update README
+      - name: Generate Contribution Summary
         run: |
-          echo "![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
-          jq '.[] | "- \(.action_name) in [\(.project_id)](\(.target_url // "no-url-provided"))"' gitlab_activity.json >> new_readme.md
+          echo "## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
+
+          # Count contributions per day
+          jq -r '[.[] | .created_at[:10]] | group_by(.) | map({date: .[0], count: length}) | sort_by(.date) | .[] | "\(.date): \(.count) contributions"' gitlab_activity.json > contributions.txt
+
+          # Generate a graph
+          echo "### Contribution Graph" >> new_readme.md
+          while read -r line; do
+            date=$(echo $line | cut -d':' -f1)
+            count=$(echo $line | cut -d':' -f2 | tr -d ' contributions')
+            printf "$date: " >> new_readme.md
+            for i in $(seq 1 $count); do printf "■" >> new_readme.md; done
+            printf "\n" >> new_readme.md
+          done < contributions.txt
+
+          # Append to README
           cat new_readme.md README.md > temp.md && mv temp.md README.md
 
       - name: Commit and push changes
