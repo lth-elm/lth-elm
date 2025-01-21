@@ -1,3 +1,12 @@
+## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)
+### Contribution Graph
+2024-12-22: ■
+2024-12-23: ■■■■■■
+2025-01-09: ■■
+2025-01-12: ■■■■
+2025-01-13: ■■■■■
+2025-01-14: ■
+2025-01-20: ■
 ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)
 "- pushed to in [51](no-url-provided)"
 "- pushed to in [41](no-url-provided)"
