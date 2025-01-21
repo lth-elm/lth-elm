@@ -20,19 +20,19 @@ jobs:
           curl --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" \
           "https://lab.git.boom.market/api/v4/users/24/events" > gitlab_activity.json
 
-      - name: Generate Contribution Summary
+      - name: Generate Contribution Summary by Month
         run: |
           echo "## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
 
-          # Count contributions per day
-          jq -r '[.[] | .created_at[:10]] | group_by(.) | map({date: .[0], count: length}) | sort_by(.date) | .[] | "\(.date): \(.count) contributions"' gitlab_activity.json > contributions.txt
+          # Filter contributions since January 2024 and group by month
+          jq -r '[.[] | select(.created_at >= "2024-01-01T00:00:00Z") | .created_at[:7]] | group_by(.) | map({month: .[0], count: length}) | sort_by(.month) | .[] | "\(.month): \(.count) contributions"' gitlab_activity.json > contributions.txt
 
-          # Generate a graph
-          echo "### Contribution Graph" >> new_readme.md
+          # Generate a graph for each month
+          echo "### Contribution Graph (Month by Month)" >> new_readme.md
           while read -r line; do
-            date=$(echo $line | cut -d':' -f1)
+            month=$(echo $line | cut -d':' -f1)
             count=$(echo $line | cut -d':' -f2 | tr -d ' contributions')
-            printf "$date: " >> new_readme.md
+            printf "$month: " >> new_readme.md
             for i in $(seq 1 $count); do printf "■" >> new_readme.md; done
             printf "\n" >> new_readme.md
           done < contributions.txt
