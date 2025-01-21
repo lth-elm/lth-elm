@@ -1,0 +1,32 @@
+name: Update README with GitLab Activity
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Runs every hour
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Fetch GitLab activity
+        run: |
+          curl --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" \
+          "https://gitlab.com/api/v4/users/USERNAME/events" > gitlab_activity.json
+
+      - name: Update README
+        run: |
+          echo "## Latest GitLab Activity" > new_readme.md
+          jq '.[] | "- \(.action_name) in [\(.project_id)](\(.target_url))"' gitlab_activity.json >> new_readme.md
+          cat new_readme.md README.md > temp.md && mv temp.md README.md
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "actions@github.com"
+          git add README.md
+          git commit -m "Update GitLab activity"
+          git push
