@@ -21,7 +21,7 @@ jobs:
       - name: Fetch GitLab activity
         run: |
           curl --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}" \
-          "https://lab.git.boom.marker/api/v4/users/24/events" > gitlab_activity.json
+          "https://lab.git.boom.market/api/v4/users/24/events" > gitlab_activity.json
 
       - name: Update README
         run: |
