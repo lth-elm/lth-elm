@@ -25,8 +25,8 @@ jobs:
 
       - name: Update README
         run: |
-          echo "## Latest GitLab Activity" > new_readme.md
-          jq '.[] | "- \(.action_name) in [\(.project_id)](\(.target_url))"' gitlab_activity.json >> new_readme.md
+          echo "![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
+          jq '.[] | "- \(.action_name) in [\(.project_id)](\(.target_url // "no-url-provided"))"' gitlab_activity.json >> new_readme.md
           cat new_readme.md README.md > temp.md && mv temp.md README.md
 
       - name: Commit and push changes
