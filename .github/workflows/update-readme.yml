@@ -43,22 +43,25 @@ jobs:
         run: |
           echo "## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
           echo "### Contribution Graph (Month by Month)" >> new_readme.md
+          echo "" >> new_readme.md
+          echo "| Month      | Contributions | Graph                               |" >> new_readme.md
+          echo "|------------|---------------|-------------------------------------|" >> new_readme.md
 
           # Filter contributions since January 2024 and group by month
           jq -r '[.[] | select(.created_at >= "2024-01-01T00:00:00Z") | .created_at[:7]] | group_by(.) | map({month: .[0], count: length}) | sort_by(.month) | .[] | "\(.month): \(.count) contributions"' gitlab_activity.json > contributions.txt
 
           # Calculate the maximum activity in any month for normalization
           max_count=$(awk -F': ' '{print $2}' contributions.txt | tr -d ' contributions' | sort -nr | head -1)
-          max_squares=10 # Maximum number of squares per month
+          max_squares=25 # Maximum number of squares per month
 
-          # Generate a normalized graph
+          # Generate a normalized table row
           while read -r line; do
             month=$(echo $line | cut -d':' -f1)
             count=$(echo $line | cut -d':' -f2 | tr -d ' contributions')
-            squares=$((count * max_squares / max_count)) # Normalize to a max of 10 squares
-            printf "$month: " >> new_readme.md
-            for i in $(seq 1 $squares); do printf "■" >> new_readme.md; done
-            printf " ($count contributions)  \n" >> new_readme.md # Add two spaces for Markdown line breaks
+            squares=$((count * max_squares / max_count)) # Normalize to a max of 25 squares
+            graph=""
+            for i in $(seq 1 $squares); do graph="${graph}■"; done
+            printf "| %-10s | %-13s | %-35s |\n" "$month" "$count" "$graph" >> new_readme.md
           done < contributions.txt
 
           # Append to README
