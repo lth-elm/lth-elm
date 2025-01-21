@@ -1,12 +1,15 @@
 name: Update README with GitLab Activity
 
 on:
+  # Schedule the workflow to run daily at XX UTC
   schedule:
     - cron: "0 6 * * *" # Runs at 06:00 UTC every day
+
+  # Trigger the workflow manually or on a push to the default branch
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main # Replace 'main' with your default branch if different
+  workflow_dispatch: # Allows you to trigger the workflow manually from the GitHub Actions interface
 
 jobs:
   update-readme:
@@ -39,6 +42,7 @@ jobs:
       - name: Generate Contribution Summary by Month
         run: |
           echo "## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
+          echo "### Contribution Graph (Month by Month)" >> new_readme.md
 
           # Filter contributions since January 2024 and group by month
           jq -r '[.[] | select(.created_at >= "2024-01-01T00:00:00Z") | .created_at[:7]] | group_by(.) | map({month: .[0], count: length}) | sort_by(.month) | .[] | "\(.month): \(.count) contributions"' gitlab_activity.json > contributions.txt
@@ -48,14 +52,13 @@ jobs:
           max_squares=10 # Maximum number of squares per month
 
           # Generate a normalized graph
-          echo "### Contribution Graph (Month by Month)" >> new_readme.md
           while read -r line; do
             month=$(echo $line | cut -d':' -f1)
             count=$(echo $line | cut -d':' -f2 | tr -d ' contributions')
             squares=$((count * max_squares / max_count)) # Normalize to a max of 10 squares
             printf "$month: " >> new_readme.md
             for i in $(seq 1 $squares); do printf "■" >> new_readme.md; done
-            printf " ($count contributions)\n" >> new_readme.md # Add a newline here
+            printf " ($count contributions)  \n" >> new_readme.md # Add two spaces for Markdown line breaks
           done < contributions.txt
 
           # Append to README
