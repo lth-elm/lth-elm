@@ -38,7 +38,7 @@ jobs:
 
       - name: Generate Contribution Summary by Month
         run: |
-          echo "## Latest GitLab Contributions" > new_readme.md
+          echo "## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
 
           # Filter contributions since January 2024 and group by month
           jq -r '[.[] | select(.created_at >= "2024-01-01T00:00:00Z") | .created_at[:7]] | group_by(.) | map({month: .[0], count: length}) | sort_by(.month) | .[] | "\(.month): \(.count) contributions"' gitlab_activity.json > contributions.txt
@@ -55,7 +55,7 @@ jobs:
             squares=$((count * max_squares / max_count)) # Normalize to a max of 10 squares
             printf "$month: " >> new_readme.md
             for i in $(seq 1 $squares); do printf "■" >> new_readme.md; done
-            printf " ($count contributions)\n" >> new_readme.md
+            printf " ($count contributions)\n" >> new_readme.md # Add a newline here
           done < contributions.txt
 
           # Append to README
