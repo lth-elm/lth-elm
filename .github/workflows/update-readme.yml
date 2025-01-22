@@ -2,8 +2,8 @@ name: Update README with GitLab Activity
 
 on:
   # Schedule the workflow to run daily at XX UTC
-  schedule:
-    - cron: "0 6 * * *" # Runs at 06:00 UTC every day
+  # schedule:
+  #   - cron: "0 6 * * *" # Runs at 06:00 UTC every day
 
   # Trigger the workflow manually or on a push to the default branch
   push:
@@ -39,7 +39,7 @@ jobs:
             page=$((page + 1))
           done
 
-      - name: Generate Contribution Summary by Month
+      - name: Generate Contribution Summary for 2024
         run: |
           echo "## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)" > new_readme.md
           echo "### Contribution Graph (Month by Month)" >> new_readme.md
@@ -63,8 +63,8 @@ jobs:
             ["12"]="Dec"
           )
 
-          # Filter contributions since January 2024 and group by month
-          jq -r '[.[] | select(.created_at >= "2024-01-01T00:00:00Z") | .created_at[:7]] | group_by(.) | map({month: .[0], count: length}) | sort_by(.month) | .[] | "\(.month): \(.count) contributions"' gitlab_activity.json > contributions.txt
+          # Filter contributions for the year 2024 and group by month
+          jq -r '[.[] | select(.created_at >= "2024-01-01T00:00:00Z" and .created_at < "2025-01-01T00:00:00Z") | .created_at[:7]] | group_by(.) | map({month: .[0], count: length}) | sort_by(.month) | .[] | "\(.month): \(.count) contributions"' gitlab_activity.json > contributions.txt
 
           # Calculate the maximum activity in any month for normalization
           max_count=$(awk -F': ' '{print $2}' contributions.txt | tr -d ' contributions' | sort -nr | head -1)
