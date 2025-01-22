@@ -68,7 +68,7 @@ jobs:
 
           # Calculate the maximum activity in any month for normalization
           max_count=$(awk -F': ' '{print $2}' contributions.txt | tr -d ' contributions' | sort -nr | head -1)
-          max_squares=25 # Maximum number of squares per month
+          max_squares=20 # Maximum number of squares per month
 
           # Generate a normalized table row with a logarithmic scale for square calculation
           while read -r line; do
