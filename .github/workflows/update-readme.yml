@@ -70,7 +70,7 @@ jobs:
           max_count=$(awk -F': ' '{print $2}' contributions.txt | tr -d ' contributions' | sort -nr | head -1)
           max_squares=25 # Maximum number of squares per month
 
-          # Generate a normalized table row with formatted month names
+          # Generate a normalized table row with a logarithmic scale for square calculation
           while read -r line; do
             raw_month=$(echo $line | cut -d':' -f1)
             year=${raw_month:0:4}
@@ -79,7 +79,7 @@ jobs:
             formatted_month="$month_name $year"
 
             count=$(echo $line | cut -d':' -f2 | tr -d ' contributions')
-            squares=$((count * max_squares / max_count)) # Normalize to a max of 25 squares
+            squares=$(awk -v c=$count -v max=$max_count -v m_sq=$max_squares 'BEGIN {print int(log(1 + c) / log(1 + max) * m_sq)}')
             graph=""
             for i in $(seq 1 $squares); do graph="${graph}■"; done
             printf "| %-10s | %-13s | %-35s |\n" "$formatted_month" "$count" "$graph" >> new_readme.md
