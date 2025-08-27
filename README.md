@@ -1,17 +1,35 @@
-## ![GitLab Activity](https://img.shields.io/badge/GitLab-Activity-blue?logo=gitlab)
-### Contribution Graph (Month by Month)
+<!-- Banner / GIF -->
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6e3e8ef4-566b-4298-b3aa-c7de17bd7a18" alt="Obito Vs Kakashi GIF"/>
+</p>
 
-| Month      | Contributions | Graph                               |
-|------------|---------------|-------------------------------------|
-| Jan 2024   | 51            | ■■■■■■■■■■■■■■■■ |
-| Feb 2024   | 60            | ■■■■■■■■■■■■■■■■■ |
-| Mar 2024   | 116           | ■■■■■■■■■■■■■■■■■■■■ |
-| Apr 2024   | 23            | ■■■■■■■■■■■■■ |
-| May 2024   | 64            | ■■■■■■■■■■■■■■■■■ |
-| Jun 2024   | 11            | ■■■■■■■■■■      |
-| Jul 2024   | 43            | ■■■■■■■■■■■■■■■ |
-| Aug 2024   | 13            | ■■■■■■■■■■■   |
-| Sep 2024   | 66            | ■■■■■■■■■■■■■■■■■ |
-| Oct 2024   | 19            | ■■■■■■■■■■■■ |
-| Nov 2024   | 6             | ■■■■■■■■            |
-| Dec 2024   | 13            | ■■■■■■■■■■■   |
+<h1 align="center">Hey, I'm Laith 👋🏼</h1>
+<p align="center">
+  💻 Developer | 🎯 Product Management | 🔗 Blockchain
+</p>
+
+---
+
+### ⚔️ About Me
+- I love building projects that blend creativity & tech.
+- Diving into **product management**.
+- Future goal: become an Iron Man.
+
+---
+
+### 🛠️ Tech Stack
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=js,ts,next,react,nodejs,python,github,git" />
+</p>
+
+---
+
+### 📊 GitHub Stats
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=lth-elm&show_icons=true&theme=tokyonight" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lth-elm&layout=compact&theme=tokyonight" height="165"/>
+</p>
+
+---
+
+> *“In the ninja world, those who break the rules are scum… but those who abandon their friends are worse than scum.”* – Kakashi Hatake
