@@ -32,4 +32,4 @@
 
 ---
 
-> *“In the ninja world, those who break the rules are scum… but those who abandon their friends are worse than scum.”* – Kakashi Hatake
+> *“In the ninja world, those who break the rules are scum… but those who abandon their friends are worse than scum.”* – Obito Uchiha
