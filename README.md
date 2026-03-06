@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://github.com/lth-elm"><img src="https://img.shields.io/github/followers/lth-elm?label=Followers&style=social" alt="GitHub Followers"></a>
-  <img src="https://komarev.com/ghpvc/?username=lth-elm&label=Profile%20Views&color=blueviolet&style=flat" alt="Profile Views">
+  <img src="https://img.shields.io/badge/dynamic/json?logo=github&label=%E2%AD%90%20Stars&style=social&query=%24.stars&url=https://api.github-star-counter.workers.dev/user/lth-elm" alt="GitHub Stars">
 </p>
 
 <p align="center">
@@ -37,33 +37,12 @@ future_goal: Become an Iron Man
 ### 🛠️ Tech Arsenal
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=python,js,ts,solidity,react,nextjs,nodejs,docker,git,linux&perline=10" />
-</p>
+  <img src="https://skillicons.dev/icons?i=python,flask,js,ts,solidity,react,vite,nextjs,nodejs,docker&perline=10" />
 
----
-
-### 📊 GitHub Stats
-
-<p align="center">
-  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=lth-elm&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="GitHub Stats"/>
-  &nbsp;
-  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com/?user=lth-elm&theme=tokyonight&hide_border=true" alt="GitHub Streak"/>
-</p>
-
-<p align="center">
-  <img width="40%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lth-elm&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages"/>
-</p>
-
----
-
-### 🐍 Contribution Graph
-
-<p align="center">
-  <img src="https://github.com/lth-elm/lth-elm/blob/output/github-snake-dark.svg" alt="Snake animation"/>
 </p>
 
 ---
 
 <p align="center">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight&quote=In+the+ninja+world,+those+who+break+the+rules+are+scum…+but+those+who+abandon+their+friends+are+worse+than+scum.&author=Obito+Uchiha" alt="Quote"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Caveat&size=18&duration=3000&color=8B949E&center=true&vCenter=true&repeat=false&multiline=true&width=620&height=70&lines=%E2%80%9CIn+the+ninja+world%2C+those+who+break+the+rules+are+scum%E2%80%A6;but+those+who+abandon+their+friends+are+worse+than+scum.%E2%80%9D+%E2%80%94+Obito+Uchiha+%E5%BF%8D" alt="Quote"/>
 </p>
