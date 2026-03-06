@@ -44,5 +44,5 @@ future_goal: Become an Iron Man
 ---
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Caveat&size=18&duration=3000&color=8B949E&center=true&vCenter=true&repeat=false&multiline=true&width=620&height=70&lines=%E2%80%9CIn+the+ninja+world%2C+those+who+break+the+rules+are+scum%E2%80%A6;but+those+who+abandon+their+friends+are+worse+than+scum.%E2%80%9D+%E2%80%94+Obito+Uchiha+%E5%BF%8D" alt="Quote"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Caveat&size=20&duration=3000&color=8B949E&center=true&vCenter=true&repeat=false&multiline=true&width=620&height=70&lines=%E2%80%9CIn+the+ninja+world%2C+those+who+break+the+rules+are+scum%E2%80%A6;but+those+who+abandon+their+friends+are+worse+than+scum.%E2%80%9D+%E2%80%94+Obito+Uchiha+%E5%BF%8D" alt="Quote"/>
 </p>
