@@ -26,20 +26,12 @@ role: Builder & Problem Solver
 currently:
   - Leveraging AI to build faster and smarter
   - Diving into product management
+  - SaaS builder
 background:
-  - Blockchain development
-  - Full-stack engineering
+  - Full-stack development
+  - Software engineering
 future_goal: Become an Iron Man
 ```
-
----
-
-### 🛠️ Tech Arsenal
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=python,flask,js,ts,solidity,react,vite,nextjs,nodejs,docker&perline=10" />
-
-</p>
 
 ---
 
